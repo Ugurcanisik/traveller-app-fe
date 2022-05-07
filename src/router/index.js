@@ -1,29 +1,54 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import Vue from "vue";
+import VueRouter from "vue-router";
 
-Vue.use(VueRouter)
+
+import ChildView from '../views/childView'
+import Contact from "@/views/contact";
+import Dashboard from "@/views/dashboard";
+import about from "@/views/about";
+import Traveller from "@/views/traveller";
+import Blog from "@/views/blog";
+import singleBlog from "@/views/singleBlog";
+
+
+Vue.use(VueRouter);
 
 const routes = [
-  {
-    path: '/',
-    name: 'home',
-    component: HomeView
-  },
-  {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
-  }
-]
+    {
+        path: "/",
+        component: ChildView,
+        children: [
+            {
+                path: '', redirect: '/dashboard',
+            },
+            {
+                path: '/dashboard', component: Dashboard,
+            },
+            {
+                path: '/contact', component: Contact,
+            },
+            {
+                path: '/about', component: about,
+            },
+            {
+                path: '/traveller', component: Traveller,
+            },
+            {
+                path: '/blog', component: Blog,
+            },
+            {
+                path: '/single-blog', component: singleBlog,
+            },
+        ]
+    },
+    {
+        path: "*", redirect: "/",
+    }
+];
 
-const router = new VueRouter({
-  mode: 'history',
-  base: process.env.BASE_URL,
-  routes
+
+export const router = new VueRouter({
+    mode: "history",
+    routes
 })
 
-export default router
