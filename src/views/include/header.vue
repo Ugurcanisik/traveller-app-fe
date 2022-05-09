@@ -35,7 +35,6 @@
             </router-link>
 
 
-
             <router-link
                 active-class="active"
                 to="/about"
@@ -49,25 +48,13 @@
 
             <router-link
                 active-class="active"
-                to="/blog"
+                to="/community"
                 tag="li"
                 class="nav-item">
               <a class="nav-link">
-                <p>Blog</p>
+                <p>Community</p>
               </a>
             </router-link>
-
-            <router-link
-                active-class="active"
-                to="/single-blog"
-                tag="li"
-                class="nav-item">
-              <a class="nav-link">
-                <p>Single Blog</p>
-              </a>
-            </router-link>
-
-
 
             <router-link
                 active-class="active"
@@ -79,15 +66,49 @@
               </a>
             </router-link>
 
-            <router-link
-                active-class="active"
-                to="/login"
-                tag="li"
-                class="nav-item">
-              <a class="nav-link">
-                <p>Login</p>
-              </a>
-            </router-link>
+
+            <li
+                class="nav-item dropdown"
+                v-if="!getUser"
+            >
+              <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">Login/Sign Up</a>
+              <div class="dropdown-menu" aria-labelledby="dropdown-a">
+
+                <router-link
+                    style="width: 140px;height: 50px; text-align: center"
+                    to="/login"
+                    tag="a"
+                    class="dropdown-item"
+                >
+                  <p>Login</p>
+                </router-link>
+
+                <router-link
+                    style="width: 140px;height: 50px; text-align: center"
+                    to="/signup"
+                    tag="a"
+                    class="dropdown-item"
+                >
+                  <p>Sign Up</p>
+                </router-link>
+
+              </div>
+            </li>
+
+            <li
+                v-else
+                class="nav-item dropdown"
+            >
+              <a class="nav-link dropdown-toggle" href="#"
+                 data-toggle="dropdown">{{ getUser.firstName + " " + getUser.lastName }}</a>
+              <div class="dropdown-menu" aria-labelledby="dropdown-a">
+                <!--    style="width: 140px;height: 50px; text-align: center"
+                <a class="dropdown-item" href="reservation.html">Reservation</a>
+                -->
+                <a class="dropdown-item" href="stuff.html">Account Settings</a>
+                <a class="dropdown-item" @click="logout">Logout</a>
+              </div>
+            </li>
 
 
           </ul>
@@ -99,7 +120,25 @@
 </template>
 
 <script>
-export default {}
+import {mapGetters} from "vuex";
+
+export default {
+  data() {
+    return {
+      checkUser: false
+    }
+  },
+  computed: {
+    ...mapGetters(['getUser']),
+    ...mapGetters(['isAuthenticated'])
+  },
+  watch: {},
+  methods: {
+    logout() {
+      this.$store.dispatch('logout')
+    }
+  }
+}
 </script>
 
 <style scoped>
