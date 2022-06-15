@@ -28,7 +28,7 @@
             <div class="blog-inner-details-page">
               <div class="blog-inner-box">
                 <div class="side-blog-img">
-                  <img class="img-fluid" src="./images/inner-blog-img.jpg" alt="">
+                  <img class="img-fluid" :src="travel.picture" alt="">
                 </div>
                 <div class="inner-blog-detail details-page">
                   <h3>{{ travel.name }}</h3>
@@ -121,7 +121,7 @@
 
                   <div class="recent-box-blog" v-for="allComment in getAllComment">
                     <div class="recent-img">
-                      <img class="img-fluid" src="./images/post-img-01.jpg" alt="">
+                      <img class="img-fluid" :src="allComment.travel.picture" width="90"  alt="">
                     </div>
                     <div class="recent-info">
                       <ul>
@@ -161,7 +161,8 @@ export default {
       id: this.$route.params.id,
       travel: {
         name: null,
-        description: null
+        description: null,
+        picture: null
       },
       comment: null
     }
@@ -245,7 +246,8 @@ export default {
           if (response != undefined) {
             this.travel = {
               name: response[0].name,
-              description: response[0].description
+              description: response[0].description,
+              picture: response[0].picture
             }
           } else {
             this.$router.push('/traveller')

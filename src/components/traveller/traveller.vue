@@ -71,7 +71,7 @@
                   >
 
                     <div class="gallery-single fix">
-                      <img src="./images/img-01.jpg" class="img-fluid" alt="Image">
+                      <img :src="travel.picture" class="img-fluid" alt="Image">
                       <div class="why-text">
                         <h4>{{ travel.name }}</h4>
                         <p>{{ travel.description }}</p>
@@ -109,7 +109,7 @@
                   >
 
                     <div class="gallery-single fix">
-                      <img src="./images/img-01.jpg" class="img-fluid" alt="Image">
+                      <img :src="travel.picture" class="img-fluid" alt="Image">
                       <div class="why-text">
                         <h4>{{ travel.name }}</h4>
                         <p>{{ travel.description }}</p>

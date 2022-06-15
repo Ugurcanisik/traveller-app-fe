@@ -1,8 +1,8 @@
 <template>
   <div>
     <!-- Start About -->
-    <div class="about-section-box">
-      <div class="container">
+    <div class="about-section-box" >
+      <div class="container" style="margin-top: 50px">
         <div class="row">
           <div class="col-lg-6 col-md-6 text-center">
             <div class="inner-column">
